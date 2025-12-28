@@ -44,7 +44,7 @@ A feature-rich car radio system for QBCore FiveM servers with real-time synchron
 - Server configured with OneSync enabled (recommended)
 
 ---
-
+![Screenshot]([https://myoctocat.com/assets/images/base-octocat.svg](https://cdn.discordapp.com/attachments/606279825635934210/1454684794603704362/image.png?ex=6951fc49&is=6950aac9&hm=2ebf8fb0442bbf0312997de9ecd6d72073a73648e74d12412e43236410da7be9&))
 ## 🚀 Installation
 
 ### **Step 1: Download & Extract**
