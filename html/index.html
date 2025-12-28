@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betches Car Radio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="radio-container" class="hidden">
+        <div class="radio-wrapper">
+            <!-- Header -->
+            <div class="radio-header">
+                <div class="header-title">
+                    <i class="fas fa-volume-up"></i>
+                    <h1>Betches Radio</h1>
+                </div>
+                <button class="close-btn" id="closeBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <div class="tabs" id="tabs">
+                    <button class="tab-btn active" data-tab="player">
+                        <i class="fas fa-play"></i>
+                        <span>Player</span>
+                    </button>
+                    <button class="tab-btn" data-tab="equalizer">
+                        <i class="fas fa-sliders-h"></i>
+                        <span>Equalizer</span>
+                    </button>
+                    <button class="tab-btn" data-tab="saved">
+                        <i class="fas fa-bookmark"></i>
+                        <span>Saved</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Player Tab -->
+                <div class="tab-content active" id="player-tab">
+                    <div class="player-section">
+                        <!-- Now Playing -->
+                        <div class="now-playing">
+                            <div class="track-info" id="videoInfo">
+                                <div class="track-title" id="videoTitle">No song playing</div>
+                                <div class="track-status">Ready to play</div>
+                            </div>
+                        </div>
+
+                        <!-- URL Input -->
+                        <div class="url-input-section">
+                            <div class="input-group">
+                                <input 
+                                    type="text" 
+                                    id="youtubeUrl" 
+                                    placeholder="Paste YouTube or .mp3/.wav/.ogg URL..."
+                                    autocomplete="off"
+                                >
+                                <button class="save-btn" id="saveMusicBtn">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="player-controls">
+                            <button class="control-btn stop-btn" id="stopBtn">
+                                <i class="fas fa-stop"></i>
+                            </button>
+                            <button class="control-btn play-btn" id="playPauseBtn">
+                                <i class="fas fa-play" id="playPauseIcon"></i>
+                            </button>
+                        </div>
+
+                        <!-- Volume & Progress -->
+                        <div class="progress-volume">
+                            <div class="volume-control">
+                                <i class="fas fa-volume-down"></i>
+                                <input 
+                                    type="range" 
+                                    id="volumeSlider" 
+                                    min="0" 
+                                    max="100" 
+                                    value="50"
+                                    class="volume-slider"
+                                >
+                                <i class="fas fa-volume-up"></i>
+                                <span class="volume-value" id="volumeValue">50%</span>
+                            </div>
+                            
+                            <div class="progress-container">
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" id="progressBar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equalizer Tab -->
+                <div class="tab-content" id="equalizer-tab">
+                    <div class="equalizer-section">
+                        <div class="eq-header">
+                            <h3>Equalizer</h3>
+                            <button class="reset-btn" id="resetEqBtn">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                        </div>
+
+                        <!-- Original Vertical Sliders -->
+                        <div class="eq-sliders-container">
+                            <div class="eq-slider-group">
+                                <div class="eq-slider-item" data-freq="31">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="0">
+                                    <div class="eq-label">31</div>
+                                </div>
+                                <div class="eq-slider-item" data-freq="62">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="1">
+                                    <div class="eq-label">62</div>
+                                </div>
+                                <div class="eq-slider-item" data-freq="125">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="2">
+                                    <div class="eq-label">125</div>
+                                </div>
+                                <div class="eq-slider-item" data-freq="250">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="3">
+                                    <div class="eq-label">250</div>
+                                </div>
+                                <div class="eq-slider-item" data-freq="500">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="4">
+                                    <div class="eq-label">500</div>
+                                </div>
+                                <div class="eq-slider-item" data-freq="1000">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="5">
+                                    <div class="eq-label">1k</div>
+                                </div>
+                                <div class="eq-slider-item" data-freq="2000">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="6">
+                                    <div class="eq-label">2k</div>
+                                </div>
+                                <div class="eq-slider-item" data-freq="4000">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="7">
+                                    <div class="eq-label">4k</div>
+                                </div>
+                                <div class="eq-slider-item" data-freq="8000">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="8">
+                                    <div class="eq-label">8k</div>
+                                </div>
+                                <div class="eq-slider-item" data-freq="16000">
+                                    <div class="eq-value">0</div>
+                                    <input type="range" class="eq-slider" orient="vertical" min="-20" max="20" value="0" step="0.5" data-band="9">
+                                    <div class="eq-label">16k</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Presets -->
+                        <div class="eq-presets">
+                            <div class="preset-title">Presets (Hold to save)</div>
+                            <div class="preset-buttons">
+                                <button class="preset-btn" data-slot="1">1</button>
+                                <button class="preset-btn" data-slot="2">2</button>
+                                <button class="preset-btn" data-slot="3">3</button>
+                                <button class="preset-btn" data-slot="4">4</button>
+                                <button class="preset-btn" data-slot="5">5</button>
+                            </div>
+                        </div>
+
+                        <!-- EQ Status -->
+                        <div class="eq-status">
+                            <i class="fas fa-info-circle"></i>
+                            <span id="eqStatusText">Use ONLY .mp3/.wav/.ogg URLs for real-time eq processing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saved Tab -->
+                <div class="tab-content" id="saved-tab">
+                    <div class="saved-section">
+                        <div class="saved-header">
+                            <h3>Saved Music</h3>
+                            <p>Click to play, right-click for options</p>
+                        </div>
+                        <div class="saved-list" id="savedMusicList">
+                            <!-- Saved music items will be inserted here -->
+                            <div class="empty-state">
+                                <i class="fas fa-music"></i>
+                                <p>No saved music</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="radio-footer">
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">Offline</span>
+                </div>
+                <div class="footer-info">
+                    <span>By Betches</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Save Music Modal -->
+        <div class="modal hidden" id="saveMusicModal">
+            <div class="modal-content">
+                <h3><i class="fas fa-save"></i> Save Track</h3>
+                <input type="text" id="musicNameInput" placeholder="Enter track name..." maxlength="100">
+                <div class="modal-buttons">
+                    <button class="modal-btn cancel" id="cancelSaveBtn">Cancel</button>
+                    <button class="modal-btn save" id="confirmSaveBtn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Tab switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all tabs and content
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab');
+                    const contentId = tabId + '-tab';
+                    document.getElementById(contentId).classList.add('active');
+                    
+                    // Start/stop equalizer based on active tab
+                    if (tabId === 'equalizer') {
+                        if (typeof startEqualizer === 'function') startEqualizer();
+                    } else {
+                        if (typeof stopEqualizer === 'function') stopEqualizer();
+                    }
+                    
+                    // Update EQ status
+                    if (typeof updateEQStatus === 'function') updateEQStatus();
+                    
+                    // Load saved music if on saved tab
+                    if (tabId === 'saved') {
+                        if (typeof renderSavedMusic === 'function') renderSavedMusic();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
